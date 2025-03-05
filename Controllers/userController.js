@@ -4,7 +4,8 @@ import pool from "../config/db.js";
 export const CreateUser = async (req,res) =>{
     const {username , email , password} = req.body;
     try{
-       const [row] = await pool.query("INSERT INTO users (username , email , password) VALUES (' becken', 'beckn@gmail.com' , '19739')");
+       const [row] = await pool.query("INSERT INTO users (username , email , password) VALUES (?,?,?)");
+        // check email input
         if(!username || !email || !password){
             res.status(401).json({
                 message:'invalid input'
